@@ -1,82 +1,118 @@
-var mysql = require('mysql');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const sqlite3 = require("sqlite3").verbose();
+const DBSOURCE = "./app.sqlite";
+const jwt = require("jsonwebtoken");
 
-var connection = mysql.createConnection({
-  host     : process.env.DB_HOST,
-  user     : process.env.DB_USER,
-  password : process.env.DB_PASS,
-  database : process.env.DB_NAME,
-  port: process.env.DB_PORT
-}); 
-connection.connect(function(err) {
+let db = new sqlite3.Database(DBSOURCE, (err) => {
   if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
+    console.error(err.message);
   }
-  // Uncomment below lines for first time to create a table in database
-  // var sql = "CREATE TABLE users (email VARCHAR(255), password VARCHAR(255))";
-  // connection.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Table created");
-  // });
-  console.log('connected as id ' + connection.threadId);
 });
-exports.register = async function(req,res){
-  const password = req.body.password;
-  const encryptedPassword = await bcrypt.hash(password, saltRounds)
 
-  var users={
-     "email":req.body.email,
-     "password":encryptedPassword
-   }
-  
-  connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
-    if (error) {
-      res.send({
-        "code":400,
-        "failed":"error ocurred"
-      })
-    } else {
-      res.send({
-        "code":200,
-        "success":"user registered sucessfully"
-          });
-      }
-  });
-}
+exports.register = async (req, res) => {
+  let errors = [];
+  try {
+    const { username, place, review } = req.body;
 
-exports.login = async function(req,res){
-  var email= req.body.email;
-  var password = req.body.password;
-  connection.query('SELECT * FROM users WHERE email = ?',[email], async function (error, results, fields) {
-    if (error) {
-      res.send({
-        "code":400,
-        "failed":"error ocurred"
-      })
-    }else{
-      if(results.length >0){
-        const comparision = await bcrypt.compare(password, results[0].password)
-        if(comparision){
-            res.send({
-              "code":200,
-              "success":"login sucessfull"
-            })
-        }
-        else{
-          res.send({
-               "code":204,
-               "success":"Email and password does not match"
-          })
-        }
-      }
-      else{
-        res.send({
-          "code":206,
-          "success":"Email does not exits"
-            });
-      }
+    if (!username) {
+      errors.push("username is missing");
     }
+    if (!email) {
+      errors.push("email is missing");
+    }
+    if (errors.length) {
+      res.status(400).json({ error: errors.join(",") });
+      return;
+    }
+    let userExists = false;
+
+    let sql = "SELECT * FROM Users WHERE email = ?";
+    await db.all(sql, email, (err, result) => {
+      if (err) {
+        res.status(402).json({ error: err.message });
+        return;
+      }
+
+      if (result.length === 0) {
+        let data = {
+          username: username,
+          email: email,
+          password: password,
+          dateCreated: Date("now"),
+        };
+
+        let sql =
+          "INSERT INTO Users (username, email, password, dateCreated) VALUES (?,?,?,?)";
+        let params = [data.username, data.email, data.password, Date("now")];
+        let user = db.run(sql, params, function (err) {
+          if (err) {
+            res.status(400).json({ error: err.message });
+            return;
+          }
+        });
+      } else {
+        userExists = true;
+        // res.status(404).send("User Already Exist. Please Login");
+      }
     });
-}
+
+    setTimeout(() => {
+      if (!userExists) {
+        res.status(201).json("Success");
+      } else {
+        res.status(201).json("Record already exists. Please login");
+      }
+    }, 500);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // Make sure there is an email and password in the request
+    if (!(email && password)) {
+      res.status(400).send("All input is required");
+      return;
+    }
+
+    let user = [];
+
+    let sql = "SELECT * FROM Users WHERE email = ?";
+    db.all(sql, email, function (err, rows) {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+
+      rows.forEach(function (row) {
+        user.push(row);
+      });
+
+      let PHash = password;
+
+      if (PHash === user[0]?.password) {
+        // * CREATE JWT TOKEN
+        const token = jwt.sign(
+          { user_id: user[0]?.Id, username: user[0]?.username, email },
+          process.env.TOKEN_KEY,
+          {
+            expiresIn: "1h", // 60s = 60 seconds - (60m = 60 minutes, 2h = 2 hours, 2d = 2 days)
+          }
+        );
+
+        user[0].Token = token;
+      } else {
+        return res.status(400).send("No Match");
+      }
+
+      return res.status(200).send(user);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.test = async (req, res) => {
+  res.status(200).send("Token Works - Yay!");
+};
