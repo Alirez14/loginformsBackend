@@ -9,6 +9,7 @@ const {
   getAllTravels,
   addNewTravel,
   deleteTravel,
+  updateTravel,
 } = require("./routes/travel");
 const DBSOURCE = "./app.sqlite";
 
@@ -83,6 +84,7 @@ router.post("/test", auth, loginroutes.test);
 router.get("/travel", auth, getAllTravels);
 router.post("/travel", auth, addNewTravel);
 router.delete("/travel", auth, deleteTravel);
+router.patch("/travel", auth, updateTravel);
 
 app.use("/api", router);
 app.listen(4000);

@@ -65,7 +65,29 @@ exports.getAllTravels = async (req, res) => {
     console.log(err);
   }
 };
+exports.updateTravel = async (req, res) => {
+  try {
+    // Make sure there is an email and password in the request
+    const { username, Id, place, review } = req.body;
+    let sql = `UPDATE Travels 
+    SET place = ? ,review = ?
+    WHERE Id = ? AND username = ?`;
+    let results = [];
+    db.run(sql, [place, review, Id, username], function (err, rows) {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      } else {
 
+
+
+        return res.status(200).send("Update Success");
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 exports.test = async (req, res) => {
   res.status(200).send("Token Works - Yay!");
 };

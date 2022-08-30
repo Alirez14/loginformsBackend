@@ -11,7 +11,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
 exports.register = async (req, res) => {
   let errors = [];
   try {
-    const { username, place, review } = req.body;
+    const { username, email, password } = req.body;
 
     if (!username) {
       errors.push("username is missing");
@@ -70,6 +70,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body);
     // Make sure there is an email and password in the request
     if (!(email && password)) {
       res.status(400).send("All input is required");
@@ -106,7 +107,7 @@ exports.login = async (req, res) => {
         return res.status(400).send("No Match");
       }
 
-      return res.status(200).send(user);
+      return res.status(200).send(user[0]);
     });
   } catch (err) {
     console.log(err);
