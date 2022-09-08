@@ -53,7 +53,8 @@ const loadTableData = async () => {
                 <th>${element.review}</th>
                 <th>${new Date(element.dateCreated).toLocaleDateString('en-US')}</th>
                 </tr>`;
-                $('#rowFormAddTravel').prepend(html);
+
+                document.getElementById('rowFormAddTravel').innerHTML = html + document.getElementById('rowFormAddTravel').innerHTML;
             });
 
             buttonsID = document.querySelectorAll('.idElement');
