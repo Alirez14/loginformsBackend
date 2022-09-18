@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start": "npm run frontend ",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"frontend": "http-server ./frontEnd/ -p 3000 -c-1"
+		"frontend": "http-server ./ -p 3000 -c-1"
 	},
 	"author": "",
 	"license": "ISC",
