@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "",
-		"backend": "nodemon index.js",
+		"start": "npm run backend && npm run frontend ",
+		"backend": "nodemon ./index.js",
 		"frontend": "http-server ./frontEnd/ -p 3000 -c-1",
 		"lint": "eslint ."
 	},
