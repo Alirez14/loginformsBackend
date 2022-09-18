@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<title>Title</title>
-	<!-- Required meta tags -->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<head>
+		<title>Title</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-</head>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous" />
+	</head>
 
-<body class="bg-dark">
-	<nav class="navbar navbar-expand-sm navbar-light bg-light">
-		<a class="navbar-brand" href="#">Traveler</a>
-		<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-			aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse " id="collapsibleNavId">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
-				<li class="nav-item active ">
-					<a class="nav-link " href="blog/blog.html"> Blog <span class="sr-only">(current)</span></a>
-				</li>
-			</ul>
-			<a href="/">
-				<button id="buttonLogin" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-					Login
-				</button>
-			</a>
-		</div>
+	<body class="bg-dark">
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
+			<a class="navbar-brand" href="#">Traveler</a>
+			<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse " id="collapsibleNavId">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+					<li class="nav-item active ">
+						<a class="nav-link " href="blog/blog.html"> Blog <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<a href="/">
+					<button id="buttonLogin" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+						Login
+					</button>
+				</a>
+			</div>
 
-	</nav>
-	<form class="col-6 mx-auto mt-5 bg-light p-4" id="formLogin">
-		<!-- Email input -->
-		<div class="form-outline mb-4">
-			<input name="email" type="email" id="inputEmail" class="form-control" />
-			<label class="form-label" for="form2Example1">Email address</label>
-		</div>
+		</nav>
+		<form class="col-6 mx-auto mt-5 bg-light p-4" id="formLogin">
+			<!-- Email input -->
+			<div class="form-outline mb-4">
+				<label for="inputEmail" class="form-label">Email address</label>
+				<input name="email" type="email" id="inputEmail" class="form-control" />
 
-		<!-- Password input -->
-		<div class="form-outline mb-4">
-			<input name="password" type="password" id="inputPassword" class="form-control" />
-			<label class="form-label" for="form2Example2">Password</label>
-		</div>
+			</div>
 
-		<button id="buttonSignIn" type="button" class="btn btn-primary btn-block mb-4">
-			Sign in
-		</button>
+			<!-- Password input -->
+			<div class="form-outline mb-4">
+				<label for="inputPassword" class="form-label">Password</label>
+				<input name="password" type="password" id="inputPassword" class="form-control" />
 
-		<!-- Register buttons -->
-		<div class="text-center">
-			<p>Not a member? <button class="btn btn-outline-info">Register</button></p>
+			</div>
 
-		</div>
-	</form>
+			<button id="buttonSignIn" type="button" class="btn btn-primary btn-block mb-4">
+				Sign in
+			</button>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-	<script type="module" src="index.js"></script>
-</body>
+			<!-- Register buttons -->
+			<div class="text-center">
+				<p>Not a member? <button class="btn btn-outline-info">Register</button></p>
+
+			</div>
+		</form>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script type="module" src="index.js"></script>
+	</body>
 
 </html>

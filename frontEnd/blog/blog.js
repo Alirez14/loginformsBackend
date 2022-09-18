@@ -1,6 +1,5 @@
 import { hostPath, navbarMain } from '../index.js';
 let buttonsID, buttonsPlace;
-const buttonAddTravel = document.getElementById('buttonAddTravel');
 const deleteById = async (event) => {
     const Id = event.target.innerText;
 
@@ -34,7 +33,7 @@ const createTravel = async () => {
     const place = document.getElementById('inputPlace').value;
     const errorMsg = document.getElementById('errorMsg');
     if (parseInt(reviewNum) < 1 || parseInt(reviewNum) > 5) {
-        errorMsg.style.display = 'show';
+        errorMsg.style.display = 'inline';
         return;
     } else {
         errorMsg.style.display = 'none';
@@ -107,6 +106,7 @@ const loadTableData = async () => {
             buttonsPlace.forEach((item) => {
                 item.onclick = showGoogleMap;
             });
+            const buttonAddTravel = document.getElementById('buttonAddTravel');
             buttonAddTravel.onclick = createTravel;
         }
     } else {
