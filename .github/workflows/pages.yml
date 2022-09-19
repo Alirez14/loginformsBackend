@@ -14,7 +14,7 @@ jobs:
         with: 
           node-version: "16.x"
       - name: CD to backend 
-        run: cd backend/
+        run: cd backEnd/
       - name: Install dependencies
         run: npm i
 
