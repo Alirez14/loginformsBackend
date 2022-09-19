@@ -45,6 +45,9 @@ jobs:
     needs: [buildFront]
     steps:
     - uses: actions/checkout@v2
+    - name: check if dist exist
+      working-directory: ./frontEnd/
+      run: ls
     - name: Deploy to GitHub Pages
       # You may pin to the exact commit or the version.
       # uses: JamesIves/github-pages-deploy-action@13046b614c663b56cba4dda3f30b9736a748b80d
