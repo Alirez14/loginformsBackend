@@ -49,5 +49,4 @@ jobs:
       with:
         # Optional file path to static site generator configuration file
         generator_config_file: ./frontEnd/dist/
-        # GitHub token
 
