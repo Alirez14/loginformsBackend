@@ -14,7 +14,8 @@ jobs:
         with: 
           node-version: "16.x"
       - name: Install dependencies
-        run: npm install
+        working-directory: ./backEnd/
+        run: npm i
 
   deploy:
     runs-on: ubuntu-latest
@@ -23,6 +24,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
+          appdir: ./backEnd/
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "sarah-oo"
-          heroku_email: "sarahchimao@gmail.com"
+          heroku_app_name: "loginformsbackend"
+          heroku_email: "alireza_esi14@yahoo.com"
