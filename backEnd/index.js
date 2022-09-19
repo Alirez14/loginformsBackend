@@ -87,4 +87,4 @@ router.delete('/travel', auth, deleteTravel);
 router.patch('/travel', auth, updateTravel);
 
 app.use('/api', router);
-app.listen(4000);
+app.listen(process.env.PORT || 3000);
