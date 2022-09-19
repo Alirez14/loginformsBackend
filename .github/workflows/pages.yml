@@ -13,9 +13,8 @@ jobs:
         uses: actions/setup-node@v2
         with: 
           node-version: "16.x"
-      - name: CD to backend 
-        run: cd backEnd/
       - name: Install dependencies
+        working-directory: ./backEnd/
         run: npm i
 
   deploy:
