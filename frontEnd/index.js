@@ -1,4 +1,4 @@
-export const hostPath = 'http://localhost:4000/api/';
+export const hostPath = 'https://loginformsbackend.herokuapp.com/api/';
 export const buttonLogin = document.getElementById('buttonLogin');
 export const formLogin = document.getElementById('formLogin');
 export const buttonSignIn = document.getElementById('buttonSignIn');
@@ -30,9 +30,12 @@ export const login = async () => {
     const json = await res.json();
     localStorage.setItem('token', json.Token);
     localStorage.setItem('username', json.username);
-    location.pathname = '/blog/blog.html';
+    location.pathname = './blog/blog.html';
 };
 
 navbarMain();
+
 location.pathname === '/' && formMain();
 location.pathname === '/' && (buttonSignIn.onclick = login);
+location.pathname === '/loginformsBackend/' && formMain();
+location.pathname === '/loginformsBackend/' && (buttonSignIn.onclick = login);
