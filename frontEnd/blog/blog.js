@@ -24,7 +24,7 @@ const deleteById = async (event) => {
         }
     } else {
         alert('please login first ');
-        location.pathname = '/';
+        location.pathname = './';
     }
 };
 const createTravel = async () => {
@@ -66,7 +66,7 @@ const createTravel = async () => {
         }
     } else {
         alert('please login first ');
-        location.pathname = '/';
+        location.pathname = './';
     }
 };
 const loadTableData = async () => {
@@ -111,7 +111,7 @@ const loadTableData = async () => {
         }
     } else {
         alert('please login first ');
-        location.pathname = '/';
+        location.pathname = './';
     }
 };
 
