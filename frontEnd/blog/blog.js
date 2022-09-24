@@ -1,4 +1,4 @@
-import { hostPath, navbarMain } from '../index.js';
+import { hostPath, navbarMain, subPath } from '../index.js';
 let buttonsID, buttonsPlace;
 const deleteById = async (event) => {
     const Id = event.target.innerText;
